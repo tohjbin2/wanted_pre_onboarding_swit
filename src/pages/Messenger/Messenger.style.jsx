@@ -11,16 +11,16 @@ const borderRadiusBottom = css`
 `;
 
 const borderLineTop = css`
-  border-top: solid 1px #e2e1e6;
+  border-top: solid 1px #dbdbdb;
 `;
 
 const borderLineBottom = css`
-  border-bottom: solid 1px #e2e1e6;
+  border-bottom: solid 1px #dbdbdb;
 `;
 
 const borderLineRL = css`
-  border-right: solid 1px #e2e1e6;
-  border-left: solid 1px #e2e1e6;
+  border-right: solid 1px #dbdbdb;
+  border-left: solid 1px #dbdbdb;
 `;
 
 const scrollbarStyle = css`
@@ -29,7 +29,7 @@ const scrollbarStyle = css`
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #d2d2d5;
+    background-color: #dbdbdb;
   }
   ::-webkit-scrollbar-track {
     background-color: #f7f7f7;
@@ -40,7 +40,6 @@ export const MessengerSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 `;
 
 export const ChatSection = styled.div`
@@ -48,6 +47,7 @@ export const ChatSection = styled.div`
   flex-direction: column;
   width: 400px;
   height: 800px;
+  margin-top: 100px;
 `;
 
 export const ChatInfoBar = styled.div`
@@ -68,7 +68,7 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.div`
-  color: #2e2e2e;
+  color: #fe505f;
   font-size: 16px;
   font-weight: 600;
 `;
@@ -102,8 +102,10 @@ export const InputText = styled.textarea`
   /* ${scrollbarStyle} */
   width: 85%;
   padding: 14px 10px 0 10px;
-  border: solid 1px #e2e1e6;
+  border: solid 1px #dbdbdb;
   border-right: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   background-color: white;
   font-size: 16px;
   resize: none;
@@ -111,7 +113,7 @@ export const InputText = styled.textarea`
     display: none;
   }
   &::placeholder {
-    color: #d2d2d5;
+    color: #dbdbdb;
   }
   &:focus {
     outline: none;
@@ -123,8 +125,10 @@ export const SendBtn = styled.button`
   justify-content: center;
   align-items: center;
   width: 15%;
-  border: solid 1px #e2e1e6;
-  background-color: #e2e1e6;
+  border: solid 1px #dbdbdb;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #fe505f;
   &:hover {
     cursor: pointer;
   }
