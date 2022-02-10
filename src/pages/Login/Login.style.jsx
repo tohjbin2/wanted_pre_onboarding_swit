@@ -17,10 +17,15 @@ export const Wrapper = styled.div`
   border: 1px solid gray;
 `;
 
-export const Logo = styled.img`
-  height: 100px;
+export const Logo = styled.div`
+  width: 300px;
+  height: 120px;
   margin-bottom: 20px;
   object-fit: contain;
+  background-image: url('/images/swit_logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 
 export const InputWrap = styled.div``;
@@ -28,9 +33,9 @@ export const InputWrap = styled.div``;
 export const InputItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 25px;
 `;
 
 export const Input = styled.input`
@@ -83,9 +88,10 @@ export const EnterBtn = styled.button`
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #fe505f;
+  background-color: ${props => (props.isActive ? '#fe505f' : '#dbdbdb')};
   color: white;
   font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
+  cursor: ${props => (props.isActive ? 'pointer' : 'default')};
+  cursor: ;
 `;
