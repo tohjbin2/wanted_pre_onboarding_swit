@@ -14,8 +14,6 @@ const Login = () => {
     setUserData({ ...userData, profileImg: item });
   };
 
-  const isActive = userData.profileImg ? true : false;
-
   return (
     <S.Container>
       <S.Wrapper>
@@ -33,9 +31,9 @@ const Login = () => {
           {PROFILE_IMAGE.map((el, idx) => {
             return (
               <S.ProfileItem
-                src={el}
                 key={idx}
-                isActive={isActive}
+                src={el}
+                isActive={userData.profileImg === el}
                 onClick={() => pickProfileImg(el)}
               />
             );

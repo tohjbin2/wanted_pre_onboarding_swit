@@ -9,9 +9,9 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   width: 400px;
   height: 800px;
   border: 1px solid gray;
@@ -19,8 +19,8 @@ export const Wrapper = styled.div`
 
 export const Logo = styled.img`
   height: 100px;
-  object-fit: contain;
   margin-bottom: 20px;
+  object-fit: contain;
 `;
 
 export const InputWrap = styled.div``;
@@ -35,10 +35,10 @@ export const InputItem = styled.div`
 
 export const Input = styled.input`
   width: 240px;
+  margin-left: 20px;
+  padding: 8px 10px;
   border: 2px solid #dbdbdb;
   border-radius: 3px;
-  padding: 8px 10px;
-  margin-left: 20px;
   font-size: 15px;
 
   &:focus {
@@ -63,24 +63,29 @@ export const ProfileHeader = styled.h2`
   color: gray;
 `;
 
-export const ProfileItem = styled.img`
+export const ProfileItem = styled.div`
   width: 70px;
   height: 70px;
   margin: 7px;
+  border: 2px solid ${props => (props.isActive ? '#fe505f' : 'none')};
   border-radius: 5px;
+  background-image: ${props => `url(${props.src})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
   box-shadow: ${props =>
-    props.isActive ? 'none' : '0px 2px 2px rgba(0, 0, 0, 0.3)'};
+    props.isActive ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.3)'};
   cursor: pointer;
 `;
 
 export const EnterBtn = styled.button`
   width: 320px;
   padding: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  background-color: #fe505f;
   border: none;
   border-radius: 5px;
+  background-color: #fe505f;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
 `;
