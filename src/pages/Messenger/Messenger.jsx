@@ -18,6 +18,17 @@ function Messenger({ chatting, addChat }) {
     e.preventDefault();
     setText('');
   };
+
+  const pressEnter = e => {
+    if (e.key === 'Enter') {
+      return handleSendBtn();
+    }
+  };
+
+  const handleSendBtn = () => {
+    if (!text || !text.trim()) return alert('메시지를 입력하세요');
+  };
+
   return (
     <S.MessengerSection>
       <S.ChatSection>
@@ -42,8 +53,9 @@ function Messenger({ chatting, addChat }) {
               required="required"
               value={text}
               onChange={onChange}
+              onKeyPress={pressEnter}
             />
-            <S.SendBtn>
+            <S.SendBtn onClick={handleSendBtn}>
               <RiSendPlane2Fill size="30px" color="white" />
             </S.SendBtn>
           </S.InputContainer>
