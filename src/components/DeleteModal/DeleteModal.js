@@ -1,19 +1,19 @@
 import React from 'react';
-import * as S from './DeleteModal.style';
-import Conversation from '../Conversation/Conversation';
-import { useDispatch, useSelector } from 'react-redux';
-// import { actionCreators } from '../../modalStore';
+import { useDispatch } from 'react-redux';
 
-function DeleteModal() {
-  const isModalOpen = useSelector(state => state.modalOpen);
+import * as S from './DeleteModal.style';
+
+function DeleteModal({ content }) {
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     dispatch({ type: 'MODAL_CLOSE' });
   };
 
-  // FIXME
-  // 삭제하기 기능이 일어나야 함.
+  const handleDeleteContent = () => {
+    dispatch({ type: 'DELETE_CHAT', message: content.message });
+    handleCloseModal();
+  };
 
   return (
     <S.ModalContainer>
@@ -24,11 +24,12 @@ function DeleteModal() {
           <S.SubTitle>
             Will you delete this message? <br />
             This cannot be undone.
+            {content.message}
           </S.SubTitle>
           {/* <Conversation onModal={true} /> */}
           <S.BtnWrapper>
             <S.CancelBtn onClick={handleCloseModal}>Cancel</S.CancelBtn>
-            <S.DeleteBtn>Delete</S.DeleteBtn>
+            <S.DeleteBtn onClick={handleDeleteContent}>Delete</S.DeleteBtn>
           </S.BtnWrapper>
         </S.Modal>
       </S.BackgroundModal>
