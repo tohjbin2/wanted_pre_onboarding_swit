@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Messenger.style';
 import { RiSendPlane2Fill } from 'react-icons/ri';
 
 function Messenger() {
+  const [inputMessage, setInputMessage] = useState('');
+
+  const inputValue = e => {
+    setInputMessage(e.target.value);
+  };
+
+  const pressEnter = e => {
+    if (e.key === 'Enter') {
+      return handleSendBtn();
+    }
+  };
+
+  const handleSendBtn = () => {
+    if (!inputMessage || !inputMessage.trim())
+      return alert('메시지를 입력하세요');
+  };
+
   return (
     <S.MessengerSection>
       <S.ChatSection>
@@ -19,8 +36,10 @@ function Messenger() {
             type="text"
             placeholder="Enter message"
             required="required"
+            onChange={inputValue}
+            onKeyPress={pressEnter}
           />
-          <S.SendBtn>
+          <S.SendBtn onClick={handleSendBtn}>
             <RiSendPlane2Fill size="30px" color="white" />
           </S.SendBtn>
         </S.InputBox>
