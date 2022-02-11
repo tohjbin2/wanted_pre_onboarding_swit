@@ -10,17 +10,17 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 400px;
   height: 800px;
+  padding: 50px 0px;
   border: 1px solid gray;
 `;
 
 export const Logo = styled.div`
   width: 300px;
   height: 120px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   object-fit: contain;
   background-image: url('/images/swit_logo.png');
   background-size: contain;

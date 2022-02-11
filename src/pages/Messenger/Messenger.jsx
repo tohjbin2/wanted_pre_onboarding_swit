@@ -2,24 +2,22 @@ import React, { useState } from 'react';
 import * as S from './Messenger.style';
 import { RiSendPlane2Fill } from 'react-icons/ri';
 
-function Messenger() {
-  const [inputMessage, setInputMessage] = useState('');
+import { connect } from 'react-redux';
+import { actionCreators } from '../../store';
 
-  const inputValue = e => {
-    setInputMessage(e.target.value);
+import Chat from '../../components/Chat/Chat';
+
+function Messenger({ chatting, addChat }) {
+  const [text, setText] = useState('');
+
+  const onChange = e => {
+    setText(e.target.value);
   };
-
-  const pressEnter = e => {
-    if (e.key === 'Enter') {
-      return handleSendBtn();
-    }
+  const onSubmit = e => {
+    addChat(text);
+    e.preventDefault();
+    setText('');
   };
-
-  const handleSendBtn = () => {
-    if (!inputMessage || !inputMessage.trim())
-      return alert('메시지를 입력하세요');
-  };
-
   return (
     <S.MessengerSection>
       <S.ChatSection>
@@ -30,22 +28,37 @@ function Messenger() {
           <S.IconBox />
         </S.ChatInfoBar>
         <S.ChatBox />
-        <S.InputBox>
-          <S.InputText
-            name="inputText"
-            type="text"
-            placeholder="Enter message"
-            required="required"
-            onChange={inputValue}
-            onKeyPress={pressEnter}
-          />
-          <S.SendBtn onClick={handleSendBtn}>
-            <RiSendPlane2Fill size="30px" color="white" />
-          </S.SendBtn>
+        <S.InputBox onSubmit={onSubmit}>
+          <S.ChatList>
+            {chatting.map(content => (
+              <Chat {...content} key={content.id} />
+            ))}
+          </S.ChatList>
+          <S.InputContainer>
+            <S.InputText
+              name="inputText"
+              type="text"
+              placeholder="Enter message"
+              required="required"
+              value={text}
+              onChange={onChange}
+            />
+            <S.SendBtn>
+              <RiSendPlane2Fill size="30px" color="white" />
+            </S.SendBtn>
+          </S.InputContainer>
         </S.InputBox>
       </S.ChatSection>
     </S.MessengerSection>
   );
 }
 
-export default Messenger;
+const mapStateProps = state => {
+  return { chatting: state };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    addChat: text => dispatch(actionCreators.addChat(text)),
+  };
+};
+export default connect(mapStateProps, mapDispatchToProps)(Messenger);
