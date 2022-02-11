@@ -93,9 +93,15 @@ export const InputBox = styled.form`
   ${borderLineBottom}
   ${borderLineRL}
   display: flex;
-  height: 63px;
+  flex-direction: column;
   padding: 0 20px 10px 20px;
   background-color: #f7f7f7;
+`;
+
+export const ChatList = styled.ul``;
+
+export const InputContainer = styled.div`
+  display: flex;
 `;
 
 export const InputText = styled.textarea`
