@@ -1,8 +1,6 @@
-const INITIAL_STATE = {
-  showModal: false,
-};
+import { INITIAL_MODAL_STATE } from '../../constants';
 
-const modals = (state = INITIAL_STATE, action) => {
+const modals = (state = INITIAL_MODAL_STATE, action) => {
   switch (action.type) {
     case 'MODAL_OPEN':
       return {

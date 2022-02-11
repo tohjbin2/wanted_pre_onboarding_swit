@@ -1,47 +1,48 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import * as S from './Conversation.style';
 
-function Conversation({ contentId, message, handleTempMessage }) {
-  const currentUserId = useSelector(state => state.login.userId);
+const Conversation = ({ contentId, chatItem, handleTempContentId }) => {
   const dispatch = useDispatch();
+  const currentUserId = useSelector(state => state.login.userId);
 
   const handleDeleteBtn = () => {
     dispatch({ type: 'MODAL_OPEN' });
-    handleTempMessage(contentId);
+    handleTempContentId(contentId);
   };
 
   const handleReplyBtn = () => {
     dispatch({
       type: 'REPLY',
-      id: message.userId,
-      content: message.message,
-      userName: message.userName,
+      id: chatItem.userId,
+      content: chatItem.message,
+      userName: chatItem.userName,
     });
   };
 
   return (
     <S.ConversationContainer>
       <S.ProfileImgWrapper>
-        <S.ProfileImg src={message.profileImageSrc} />
+        <S.ProfileImg src={chatItem.profileImageSrc} />
       </S.ProfileImgWrapper>
       <S.InfoAndMsgContainer>
         <S.InfoWrapper>
           <S.UserName>
-            {message.userName}
-            {message.userId === currentUserId ? <S.MyBadge>*</S.MyBadge> : ''}
+            {chatItem.userName}
+            {chatItem.userId === currentUserId ? <S.MyBadge>*</S.MyBadge> : ''}
           </S.UserName>
-          <S.SendDate>{message.sendDate}</S.SendDate>
+          <S.SendDate>{chatItem.sendDate}</S.SendDate>
         </S.InfoWrapper>
         <S.MsgWrapper>
-          <S.MsgContent>{message.message}</S.MsgContent>
+          <S.MsgContent>{chatItem.message}</S.MsgContent>
           <S.BtnWrapper>
             <S.ReplyBtn
               src="/images/reply.png"
               title="답장하기"
               onClick={handleReplyBtn}
             />
-            {message.userId === currentUserId && (
+            {chatItem.userId === currentUserId && (
               <S.DeleteBtn
                 src="/images/delete.png"
                 title="삭제하기"
@@ -53,6 +54,6 @@ function Conversation({ contentId, message, handleTempMessage }) {
       </S.InfoAndMsgContainer>
     </S.ConversationContainer>
   );
-}
+};
 
 export default Conversation;
