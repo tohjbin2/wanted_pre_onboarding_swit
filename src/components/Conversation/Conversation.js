@@ -34,18 +34,18 @@ function Conversation({ message, handleTempMessage }) {
         </S.InfoWrapper>
         <S.MsgWrapper>
           <S.MsgContent>{message.message}</S.MsgContent>
-            <S.BtnWrapper>
-              <S.ReplyBtn
-                src="/images/reply.png"
-                title="답장하기"
-                onClick={handleReplyBtn}
-              />
-              <S.DeleteBtn
-                src="/images/delete.png"
-                title="삭제하기"
-                onClick={handleDeleteBtn}
-              />
-            </S.BtnWrapper>
+          <S.BtnWrapper>
+            <S.ReplyBtn
+              src="/images/reply.png"
+              title="답장하기"
+              onClick={handleReplyBtn}
+            />
+            <S.DeleteBtn
+              src="/images/delete.png"
+              title="삭제하기"
+              onClick={handleDeleteBtn}
+            />
+          </S.BtnWrapper>
         </S.MsgWrapper>
       </S.InfoAndMsgContainer>
     </S.ConversationContainer>
