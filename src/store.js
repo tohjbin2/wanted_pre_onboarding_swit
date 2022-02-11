@@ -43,6 +43,7 @@
 // }
 
 import { createStore } from 'redux';
+import { INITIAL_MESSAGE } from './constants';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {

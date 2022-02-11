@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // import { connect } from 'react-redux';
 // import { actionCreators } from '../../store';
+import Conversation from '../../components/Conversation/Conversation';
+import { INITIAL_MESSAGE } from '../../constants';
 
 // import Chat from '../../components/Chat/Chat';
 
@@ -15,6 +17,7 @@ function Messenger({ chatting, addChat }) {
   const profileImg = useSelector(state => state.profileImg);
 
   const [text, setText] = useState('');
+  const [messages, setMessages] = useState(INITIAL_MESSAGE);
 
   const onChange = e => {
     setText(e.target.value);
@@ -28,6 +31,17 @@ function Messenger({ chatting, addChat }) {
       profileImg: profileImg,
       text: text,
     });
+    // setMessages([
+    //   ...messages,
+    //   {
+    //     id: 1,
+    //     userName: '프론트엔드',
+    //     userId: 'frontend123',
+    //     profileImageSrc: '/images/profile-icon-1.jpg',
+    //     sendDate: '2022-01-01 01:00:00',
+    //     message: text,
+    //   },
+    // ]);
     e.preventDefault();
     setText('');
   };
@@ -54,9 +68,9 @@ function Messenger({ chatting, addChat }) {
         <S.ChatBox />
         <S.InputBox onSubmit={onSubmit}>
           <S.ChatList>
-            {/* {chatting.map(content => (
-              <Chat {...content} key={content.id} />
-            ))} */}
+            {/* {messages.map(content => {
+              return <Conversation message={content} />;
+            })} */}
           </S.ChatList>
           <S.InputContainer>
             <S.InputText
@@ -78,14 +92,15 @@ function Messenger({ chatting, addChat }) {
   );
 }
 
-export default Messenger;
-
 // const mapStateProps = state => {
 //   return { chatting: state };
 // };
+
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     addChat: text => dispatch(actionCreators.addChat(text)),
 //   };
 // };
+
 // export default connect(mapStateProps, mapDispatchToProps)(Messenger);
+export default Messenger;
