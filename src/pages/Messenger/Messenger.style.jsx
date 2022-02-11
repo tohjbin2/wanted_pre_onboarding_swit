@@ -47,7 +47,7 @@ export const ChatSection = styled.div`
   flex-direction: column;
   width: 400px;
   height: 800px;
-  margin-top: 100px;
+  margin-top: 40px;
 `;
 
 export const ChatInfoBar = styled.div`

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { PROFILE_IMAGE } from '../../constants';
 import * as S from './Login.style';
+import { PROFILE_IMAGE } from '../../constants';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     userId: '',
     userName: '',
     profileImg: '',
   });
-
-  const navigate = useNavigate();
-
   const { userId, userName, profileImg } = userData;
 
   const handleUserInput = e => {
@@ -28,6 +27,12 @@ const Login = () => {
     userId.length > 0 && userName.length > 0 && profileImg.length > 0;
 
   const submitUserData = () => {
+    dispatch({
+      type: 'USER_LOGIN',
+      userId: userId,
+      userName: userName,
+      profileImg: profileImg,
+    });
     submitValid ? alert('환영합니다.') : alert('가입 형식을 확인하세요');
     navigate('/messenger');
   };
