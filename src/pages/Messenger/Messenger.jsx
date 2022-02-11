@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RiSendPlane2Fill } from 'react-icons/ri';
 
@@ -43,13 +43,26 @@ function Messenger() {
     }
   };
 
+  const scrollRef = useRef();
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  };
+
   const handleSendBtn = () => {
     if (!text || !text.trim()) {
       return alert('메시지를 입력하세요');
     } else {
       onSubmit();
+      scrollToBottom();
     }
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
 
   return (
     <S.MessengerSection>
@@ -61,13 +74,13 @@ function Messenger() {
           </S.TitleBox>
           <S.IconBox />
         </S.ChatInfoBar>
-        <S.ChatBox />
-        <S.InputBox onSubmit={onSubmit}>
-          <S.ChatList>
-            {chatList.map((content, idx) => {
-              return <Conversation key={idx} message={content} />;
-            })}
-          </S.ChatList>
+        <S.ChatBox onSubmit={onSubmit} ref={scrollRef}>
+          {chatList.map((content, idx) => {
+            return <Conversation key={idx} message={content} />;
+          })}
+        </S.ChatBox>
+        <S.InputBox>
+          {/* <S.ChatList /> */}
           <S.InputContainer>
             <S.InputText
               name="inputText"

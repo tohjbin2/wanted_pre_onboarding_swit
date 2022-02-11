@@ -77,7 +77,7 @@ export const IconBox = styled.div`
   margin-right: 0;
 `;
 
-export const ChatBox = styled.div`
+export const ChatBox = styled.ul`
   ${borderLineRL}
   ${scrollbarStyle}
   height: 85%;
@@ -98,14 +98,13 @@ export const InputBox = styled.form`
   background-color: #f7f7f7;
 `;
 
-export const ChatList = styled.ul``;
+// export const ChatList = styled.ul``;
 
 export const InputContainer = styled.div`
   display: flex;
 `;
 
 export const InputText = styled.textarea`
-  /* ${scrollbarStyle} */
   width: 85%;
   padding: 14px 10px 0 10px;
   border: solid 1px #dbdbdb;
