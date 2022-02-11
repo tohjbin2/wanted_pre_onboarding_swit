@@ -4,6 +4,7 @@ import * as S from './Conversation.style';
 
 function Conversation({ message, handleTempMessage }) {
   const isModalOpen = useSelector(state => state.modalOpen);
+  const currentUserId = useSelector(state => state.login.userId);
   const dispatch = useDispatch();
 
   const handleDeleteBtn = () => {
@@ -18,7 +19,10 @@ function Conversation({ message, handleTempMessage }) {
       </S.ProfileImgWrapper>
       <S.InfoAndMsgContainer>
         <S.InfoWrapper>
-          <S.UserName>{message.userName} *</S.UserName>
+          <S.UserName>
+            {message.userName}
+            {message.userId === currentUserId ? <S.MyBadge>*</S.MyBadge> : ''}
+          </S.UserName>
           {!isModalOpen && <S.SendDate>{message.sendDate}</S.SendDate>}
         </S.InfoWrapper>
         <S.MsgWrapper>
