@@ -1,11 +1,9 @@
+import { INIT_REPLY_STATE } from '../../constants';
+
 const REPLY = 'REPLY';
 const REPLY_OFF = 'REPLY_OFF';
 
-const INIT_STATE = {
-  onReply: false,
-};
-
-const reply = (state = INIT_STATE, action) => {
+const reply = (state = INIT_REPLY_STATE, action) => {
   switch (action.type) {
     case REPLY:
       return {

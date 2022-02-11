@@ -8,9 +8,11 @@ import DeleteModal from '../../components/DeleteModal/DeleteModal';
 import { formatingTime } from '../../utils';
 import * as S from './Messenger.style';
 
-function Messenger() {
+const Messenger = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const date = formatingTime();
+  const scrollRef = useRef();
 
   const userId = useSelector(state => state.login.userId);
   const userName = useSelector(state => state.login.userName);
@@ -19,18 +21,16 @@ function Messenger() {
   const isModalOpen = useSelector(state => state.modals.showModal);
   const replyData = useSelector(state => state.reply);
 
-  const date = formatingTime();
-
-  const [text, setText] = useState('');
-  const [tempMessage, setTempMessage] = useState();
+  const [content, setContent] = useState('');
+  const [tempContentId, setTempContentId] = useState();
 
   const onChange = e => {
     replyData.onReply && dispatch({ type: 'REPLY_OFF' });
-    setText(e.target.value);
+    setContent(e.target.value);
   };
 
-  const handleTempMessage = id => {
-    setTempMessage(id);
+  const handleTempContentId = id => {
+    setTempContentId(id);
   };
 
   const onSubmit = () => {
@@ -40,10 +40,10 @@ function Messenger() {
         userId: userId,
         userName: userName,
         profileImageSrc: profileImageSrc,
-        message: text,
+        message: content,
         sendDate: date,
       });
-      setText('');
+      setContent('');
     } else {
       alert('로그인이 필요합니다');
       navigate('/');
@@ -56,8 +56,6 @@ function Messenger() {
     }
   };
 
-  const scrollRef = useRef();
-
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -65,7 +63,7 @@ function Messenger() {
   };
 
   const handleSendBtn = () => {
-    !text || !text.trim() ? alert('메시지를 입력하세요') : onSubmit();
+    !content || !content.trim() ? alert('메시지를 입력하세요') : onSubmit();
   };
 
   useEffect(() => {
@@ -74,7 +72,7 @@ function Messenger() {
 
   return (
     <S.MessengerSection>
-      {isModalOpen && <DeleteModal contentId={tempMessage} />}
+      {isModalOpen && <DeleteModal contentId={tempContentId} />}
       <S.ChatSection>
         <S.ChatInfoBar>
           <S.TitleBox>
@@ -83,13 +81,13 @@ function Messenger() {
           <S.IconBox />
         </S.ChatInfoBar>
         <S.ChatBox onSubmit={onSubmit} ref={scrollRef}>
-          {chatList.map((content, idx) => {
+          {chatList.map((chatItem, idx) => {
             return (
               <Conversation
                 key={idx}
                 contentId={idx}
-                message={content}
-                handleTempMessage={handleTempMessage}
+                chatItem={chatItem}
+                handleTempContentId={handleTempContentId}
               />
             );
           })}
@@ -103,8 +101,8 @@ function Messenger() {
               required="required"
               value={
                 replyData.onReply
-                  ? `${replyData.userName}\n${replyData.content}\n(회신)\n${text}`
-                  : text
+                  ? `${replyData.userName}\n${replyData.content}\n(회신)\n${content}`
+                  : content
               }
               onChange={onChange}
               onKeyPress={pressEnter}
@@ -117,6 +115,6 @@ function Messenger() {
       </S.ChatSection>
     </S.MessengerSection>
   );
-}
+};
 
 export default Messenger;

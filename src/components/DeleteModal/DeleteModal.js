@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import * as S from './DeleteModal.style';
 
-function DeleteModal({ contentId }) {
-  const content = useSelector(state => state.messenger[contentId]);
+const DeleteModal = ({ contentId }) => {
+  const chatItem = useSelector(state => state.messenger[contentId]);
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
@@ -26,7 +26,7 @@ function DeleteModal({ contentId }) {
             Will you delete this message? <br />
             This cannot be undone.
           </S.SubTitle>
-          <S.MsgWrapepr>{content.message}</S.MsgWrapepr>
+          <S.MsgWrapepr>{chatItem.message}</S.MsgWrapepr>
           <S.BtnWrapper>
             <S.CancelBtn onClick={handleCloseModal}>Cancel</S.CancelBtn>
             <S.DeleteBtn onClick={handleDeleteContent}>Delete</S.DeleteBtn>
@@ -35,6 +35,6 @@ function DeleteModal({ contentId }) {
       </S.BackgroundModal>
     </S.ModalContainer>
   );
-}
+};
 
 export default DeleteModal;

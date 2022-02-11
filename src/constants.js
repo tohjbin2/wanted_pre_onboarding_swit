@@ -48,3 +48,11 @@ export const INITIAL_MESSAGE = [
       '백엔드는 너무 신나 ! 스프링도 재밌고 장고도 재밌고 swit은 정말 최고야 !',
   },
 ];
+
+export const INIT_REPLY_STATE = {
+  onReply: false,
+};
+
+export const INITIAL_MODAL_STATE = {
+  showModal: false,
+};
