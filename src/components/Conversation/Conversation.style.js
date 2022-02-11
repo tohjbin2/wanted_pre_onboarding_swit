@@ -44,6 +44,7 @@ export const MsgContent = styled.p`
   font-size: 14px;
   line-height: 24px;
   margin-right: 10px;
+  white-space: pre-wrap;
 
   text-overflow: ${({ onModal }) => onModal && 'ellipsis'};
   white-space: ${({ onModal }) => onModal && 'nowrap'};

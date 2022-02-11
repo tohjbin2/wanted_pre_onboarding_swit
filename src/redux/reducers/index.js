@@ -10,9 +10,9 @@ import reply from './reply';
 const persistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['login', 'messenger', 'modals'],
+  whitelist: ['login', 'messenger', 'modals', 'reply'],
 };
 
-const rootReducer = combineReducers({ login, messenger, modals });
+const rootReducer = combineReducers({ login, messenger, modals, reply });
 
 export default persistReducer(persistConfig, rootReducer);

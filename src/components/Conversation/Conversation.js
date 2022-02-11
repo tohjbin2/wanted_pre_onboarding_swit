@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './Conversation.style';
 
@@ -17,6 +17,7 @@ function Conversation({ message, handleTempMessage }) {
       type: 'REPLY',
       id: message.userId,
       content: message.message,
+      userName: message.userName,
     });
   };
 

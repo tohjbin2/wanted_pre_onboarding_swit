@@ -6,7 +6,6 @@ import { RiSendPlane2Fill } from 'react-icons/ri';
 import Conversation from '../../components/Conversation/Conversation';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
 import { formatingTime } from '../../utils';
-import { selectReply } from '../../redux/reducers/reply';
 import * as S from './Messenger.style';
 
 function Messenger() {
@@ -18,11 +17,15 @@ function Messenger() {
   const profileImageSrc = useSelector(state => state.login.profileImageSrc);
   const chatList = useSelector(state => state.messenger);
   const isModalOpen = useSelector(state => state.modals.showModal);
+  const replyData = useSelector(state => state.reply);
+
   const date = formatingTime();
+
   const [text, setText] = useState('');
   const [tempMessage, setTempMessage] = useState();
 
   const onChange = e => {
+    replyData.onReply && dispatch({ type: 'REPLY_OFF' });
     setText(e.target.value);
   };
 
@@ -30,7 +33,7 @@ function Messenger() {
     setTempMessage(item);
   };
 
-  const onSubmit = e => {
+  const onSubmit = () => {
     if (userId !== undefined) {
       dispatch({
         type: 'ADD_CHAT',
@@ -40,7 +43,6 @@ function Messenger() {
         message: text,
         sendDate: date,
       });
-      // e.preventDefault();
       setText('');
     } else {
       alert('로그인이 필요합니다');
@@ -98,7 +100,11 @@ function Messenger() {
               type="textarea"
               placeholder="Enter message"
               required="required"
-              value={text}
+              value={
+                replyData.onReply
+                  ? `${replyData.userName}\n${replyData.content}\n(회신)\n${text}`
+                  : text
+              }
               onChange={onChange}
               onKeyPress={pressEnter}
             />
