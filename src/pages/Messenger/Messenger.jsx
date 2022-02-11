@@ -64,7 +64,7 @@ function Messenger() {
   };
 
   const handleSendBtn = () => {
-    !text ? alert('메시지를 입력하세요') : onSubmit();
+    !text || !text.trim() ? alert('메시지를 입력하세요') : onSubmit();
   };
 
   useEffect(() => {
