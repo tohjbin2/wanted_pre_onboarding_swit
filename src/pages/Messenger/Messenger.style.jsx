@@ -98,8 +98,6 @@ export const InputBox = styled.form`
   background-color: #f7f7f7;
 `;
 
-// export const ChatList = styled.ul``;
-
 export const InputContainer = styled.div`
   display: flex;
 `;

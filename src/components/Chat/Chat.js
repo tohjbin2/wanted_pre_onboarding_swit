@@ -1,17 +1,14 @@
-<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
 import DeleteModal from '../DeleteModal/DeleteModal';
 // import * as S from './Conversation.style';
-=======
 // import React from 'react';
 // import styled from 'styled-components';
 // import { connect } from 'react-redux';
 // import { actionCreators } from '../../store';
 // // import * as S from './Conversation.style';
->>>>>>> ce94e98226e9ed34dc8565d136aaa2d177a12901
 
 // function Chat({ text, onDelBtnClick }) {
 //   return (
