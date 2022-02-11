@@ -14,7 +14,7 @@ const messenger = (state = INITIAL_MESSAGE, action) => {
         },
       ];
     case 'DELETE_CHAT':
-      return state.filter(chat => chat.message !== action.message);
+      return state.filter((chat, idx) => idx !== action.key);
     default:
       return state;
   }

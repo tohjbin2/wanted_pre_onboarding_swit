@@ -5,9 +5,11 @@ export const ConversationContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: ${({ onModal }) => (!onModal ? '0 10px' : '10px')};
-  margin: 5px 0;
-  background-color: ${({ onModal }) => onModal && '#f8f8f8'};
+  padding: 5px;
+  margin: 10px 0;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 4px;
 `;
 
 export const ProfileImgWrapper = styled.div`
@@ -36,7 +38,7 @@ export const InfoWrapper = styled.div`
 
 export const MsgWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
 `;
 
@@ -45,12 +47,6 @@ export const MsgContent = styled.p`
   line-height: 24px;
   margin-right: 10px;
   white-space: pre-wrap;
-
-  text-overflow: ${({ onModal }) => onModal && 'ellipsis'};
-  white-space: ${({ onModal }) => onModal && 'nowrap'};
-  word-wrap: ${({ onModal }) => onModal && 'normal'};
-  width: ${({ onModal }) => onModal && '140px'};
-  overflow: ${({ onModal }) => onModal && 'hidden'};
 `;
 
 export const UserName = styled.h2`
@@ -67,7 +63,7 @@ export const SendDate = styled.h4`
 
 export const BtnWrapper = styled.div`
   display: flex;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 `;
 
 export const ReplyBtn = styled.img`
