@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as S from './DeleteModal.style';
 
-function DeleteModal({ content }) {
+function DeleteModal({ contentId }) {
+  const content = useSelector(state => state.messenger[contentId]);
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
@@ -11,7 +12,7 @@ function DeleteModal({ content }) {
   };
 
   const handleDeleteContent = () => {
-    dispatch({ type: 'DELETE_CHAT', message: content.message });
+    dispatch({ type: 'DELETE_CHAT', key: contentId });
     handleCloseModal();
   };
 
@@ -26,7 +27,6 @@ function DeleteModal({ content }) {
             This cannot be undone.
             {content.message}
           </S.SubTitle>
-          {/* <Conversation onModal={true} /> */}
           <S.BtnWrapper>
             <S.CancelBtn onClick={handleCloseModal}>Cancel</S.CancelBtn>
             <S.DeleteBtn onClick={handleDeleteContent}>Delete</S.DeleteBtn>
