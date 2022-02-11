@@ -43,6 +43,7 @@ import { INITIAL_MESSAGE } from './constants';
 const initialState = {
   chatList: [...INITIAL_MESSAGE],
   userInfo: {},
+  modalOpen: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -69,6 +70,16 @@ const reducer = (state = initialState, action) => {
             sendDate: action.sendDate,
           },
         ],
+      };
+    case 'MODAL_OPEN':
+      return {
+        ...state,
+        modalOpen: true,
+      };
+    case 'MODAL_CLOSE':
+      return {
+        ...state,
+        modalOpen: false,
       };
     default:
       return state;

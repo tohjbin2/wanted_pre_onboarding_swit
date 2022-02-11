@@ -68,7 +68,7 @@ const Login = () => {
               <S.ProfileItem
                 key={idx}
                 src={el}
-                isActive={userData.profileImg === el}
+                isActive={userData.profileImageSrc === el}
                 onClick={() => pickProfileImg(el)}
               />
             );
