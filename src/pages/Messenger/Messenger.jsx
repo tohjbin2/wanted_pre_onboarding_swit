@@ -5,14 +5,15 @@ import { RiSendPlane2Fill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
 
-import Chat from '../../components/Chat/Chat';
+import Conversation from '../../components/Conversation/Conversation';
 
-function Messenger({ chatting, addChat }) {
+const Messenger = ({ chatting, addChat }) => {
   const [text, setText] = useState('');
 
   const onChange = e => {
     setText(e.target.value);
   };
+
   const onSubmit = e => {
     addChat(text);
     e.preventDefault();
@@ -41,9 +42,9 @@ function Messenger({ chatting, addChat }) {
         <S.ChatBox />
         <S.InputBox onSubmit={onSubmit}>
           <S.ChatList>
-            {chatting.map(content => (
-              <Chat {...content} key={content.id} />
-            ))}
+            {chatting.map(content => {
+              return <Conversation message={content} key={content.id} />;
+            })}
           </S.ChatList>
           <S.InputContainer>
             <S.InputText
@@ -63,14 +64,16 @@ function Messenger({ chatting, addChat }) {
       </S.ChatSection>
     </S.MessengerSection>
   );
-}
+};
 
 const mapStateProps = state => {
   return { chatting: state };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     addChat: text => dispatch(actionCreators.addChat(text)),
   };
 };
+
 export default connect(mapStateProps, mapDispatchToProps)(Messenger);
