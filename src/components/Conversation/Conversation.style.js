@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ConversationContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -62,8 +63,10 @@ export const SendDate = styled.h4`
 `;
 
 export const BtnWrapper = styled.div`
+  position: absolute;
+  right: 0;
   display: flex;
-  padding-bottom: 8px;
+  padding: 0 12px 8px 0;
 `;
 
 export const ReplyBtn = styled.img`
