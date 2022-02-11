@@ -6,6 +6,7 @@ import { RiSendPlane2Fill } from 'react-icons/ri';
 import Conversation from '../../components/Conversation/Conversation';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
 import { formatingTime } from '../../utils';
+import { selectReply } from '../../redux/reducers/reply';
 import * as S from './Messenger.style';
 
 function Messenger() {
@@ -17,9 +18,7 @@ function Messenger() {
   const profileImageSrc = useSelector(state => state.login.profileImageSrc);
   const chatList = useSelector(state => state.messenger);
   const isModalOpen = useSelector(state => state.modals.showModal);
-
   const date = formatingTime();
-
   const [text, setText] = useState('');
   const [tempMessage, setTempMessage] = useState();
 
@@ -64,7 +63,7 @@ function Messenger() {
   };
 
   const handleSendBtn = () => {
-    !text ? alert('메시지를 입력하세요') : onSubmit();
+    !text || !text.trim() ? alert('메시지를 입력하세요') : onSubmit();
   };
 
   useEffect(() => {
