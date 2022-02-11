@@ -19,9 +19,14 @@ function Messenger() {
   const date = formatingTime();
 
   const [text, setText] = useState('');
+  const [tempMessage, setTempMessage] = useState();
 
   const onChange = e => {
     setText(e.target.value);
+  };
+
+  const handleTempMessage = item => {
+    setTempMessage(item);
   };
 
   const onSubmit = e => {
@@ -53,7 +58,7 @@ function Messenger() {
 
   return (
     <S.MessengerSection>
-      {isModalOpen && <DeleteModal />}
+      {isModalOpen && <DeleteModal content={tempMessage} />}
       <S.ChatSection>
         <S.ChatInfoBar>
           <S.TitleBox>
@@ -65,7 +70,13 @@ function Messenger() {
         <S.InputBox onSubmit={onSubmit}>
           <S.ChatList>
             {chatList.map((content, idx) => {
-              return <Conversation key={idx} message={content} />;
+              return (
+                <Conversation
+                  key={idx}
+                  message={content}
+                  handleTempMessage={handleTempMessage}
+                />
+              );
             })}
           </S.ChatList>
           <S.InputContainer>
