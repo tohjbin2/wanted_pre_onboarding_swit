@@ -43,6 +43,16 @@ export const SubTitle = styled.h4`
   margin-bottom: 20px;
 `;
 
+export const MsgWrapepr = styled.div`
+  font-size: 14px;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  width: 140px;
+  overflow: hidden;
+`;
+
 export const BtnWrapper = styled.div`
   padding-top: 20px;
   display: flex;

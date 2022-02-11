@@ -24,9 +24,8 @@ function DeleteModal({ content }) {
           <S.SubTitle>
             Will you delete this message? <br />
             This cannot be undone.
-            {content.message}
           </S.SubTitle>
-          {/* <Conversation onModal={true} /> */}
+          <S.MsgWrapepr>{content.message}</S.MsgWrapepr>
           <S.BtnWrapper>
             <S.CancelBtn onClick={handleCloseModal}>Cancel</S.CancelBtn>
             <S.DeleteBtn onClick={handleDeleteContent}>Delete</S.DeleteBtn>
