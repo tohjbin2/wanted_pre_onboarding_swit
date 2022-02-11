@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './Conversation.style';
 
-function Conversation({ message, handleTempMessage }) {
+function Conversation({ contentId, message, handleTempMessage }) {
   const currentUserId = useSelector(state => state.login.userId);
   const dispatch = useDispatch();
 
   const handleDeleteBtn = () => {
     dispatch({ type: 'MODAL_OPEN' });
-    handleTempMessage(message);
+    handleTempMessage(contentId);
   };
 
   const handleReplyBtn = () => {

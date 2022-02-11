@@ -26,8 +26,8 @@ function Messenger() {
     setText(e.target.value);
   };
 
-  const handleTempMessage = item => {
-    setTempMessage(item);
+  const handleTempMessage = id => {
+    setTempMessage(id);
   };
 
   const onSubmit = e => {
@@ -72,7 +72,7 @@ function Messenger() {
 
   return (
     <S.MessengerSection>
-      {isModalOpen && <DeleteModal content={tempMessage} />}
+      {isModalOpen && <DeleteModal contentId={tempMessage} />}
       <S.ChatSection>
         <S.ChatInfoBar>
           <S.TitleBox>
@@ -85,6 +85,7 @@ function Messenger() {
             return (
               <Conversation
                 key={idx}
+                contentId={idx}
                 message={content}
                 handleTempMessage={handleTempMessage}
               />
