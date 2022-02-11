@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './Conversation.style';
 
@@ -10,6 +10,14 @@ function Conversation({ message, handleTempMessage }) {
   const handleDeleteBtn = () => {
     dispatch({ type: 'MODAL_OPEN' });
     handleTempMessage(message);
+  };
+
+  const handleReplyBtn = () => {
+    dispatch({
+      type: 'REPLY',
+      id: message.userId,
+      content: message.message,
+    });
   };
 
   return (
@@ -29,7 +37,11 @@ function Conversation({ message, handleTempMessage }) {
           <S.MsgContent onModal={isModalOpen}>{message.message}</S.MsgContent>
           {!isModalOpen && (
             <S.BtnWrapper>
-              <S.ReplyBtn src="/images/reply.png" title="답장하기" />
+              <S.ReplyBtn
+                src="/images/reply.png"
+                title="답장하기"
+                onClick={handleReplyBtn}
+              />
               <S.DeleteBtn
                 src="/images/delete.png"
                 title="삭제하기"
