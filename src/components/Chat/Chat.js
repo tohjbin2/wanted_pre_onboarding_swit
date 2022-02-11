@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
+import DeleteModal from '../DeleteModal/DeleteModal';
 // import * as S from './Conversation.style';
 
 function Chat({ text, onDelBtnClick }) {

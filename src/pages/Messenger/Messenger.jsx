@@ -4,11 +4,12 @@ import { RiSendPlane2Fill } from 'react-icons/ri';
 
 import { connect } from 'react-redux';
 import { actionCreators } from '../../store';
-
 import Chat from '../../components/Chat/Chat';
+import DeleteModal from '../../components/DeleteModal/DeleteModal';
 
 function Messenger({ chatting, addChat }) {
   const [text, setText] = useState('');
+  const [show, setShow] = useState(false);
 
   const onChange = e => {
     setText(e.target.value);
@@ -18,6 +19,7 @@ function Messenger({ chatting, addChat }) {
     e.preventDefault();
     setText('');
   };
+
   return (
     <S.MessengerSection>
       <S.ChatSection>
