@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './Conversation.style';
 
-function Conversation({ onModal, message }) {
+function Conversation({ message, handleTempMessage }) {
   const isModalOpen = useSelector(state => state.modalOpen);
-  const replyMsg = useSelector(state => state.reply.onReply);
+  const currentUserId = useSelector(state => state.login.userId);
   const dispatch = useDispatch();
-
-  const [reText, setReText] = useState('');
 
   const handleDeleteBtn = () => {
     dispatch({ type: 'MODAL_OPEN' });
+    handleTempMessage(message);
   };
 
-  const handleReplyBtn = e => {
-    console.log(message);
+  const handleReplyBtn = () => {
     dispatch({
       type: 'REPLY',
       id: message.userId,
@@ -23,18 +21,21 @@ function Conversation({ onModal, message }) {
   };
 
   return (
-    <S.ConversationContainer onModal={onModal}>
+    <S.ConversationContainer onModal={isModalOpen}>
       <S.ProfileImgWrapper>
         <S.ProfileImg src={message.profileImageSrc} />
       </S.ProfileImgWrapper>
       <S.InfoAndMsgContainer>
         <S.InfoWrapper>
-          <S.UserName>{message.userName} *</S.UserName>
-          {!onModal && <S.SendDate>{message.sendDate}</S.SendDate>}
+          <S.UserName>
+            {message.userName}
+            {message.userId === currentUserId ? <S.MyBadge>*</S.MyBadge> : ''}
+          </S.UserName>
+          {!isModalOpen && <S.SendDate>{message.sendDate}</S.SendDate>}
         </S.InfoWrapper>
         <S.MsgWrapper>
-          <S.MsgContent onModal={onModal}>{message.message}</S.MsgContent>
-          {!onModal && (
+          <S.MsgContent onModal={isModalOpen}>{message.message}</S.MsgContent>
+          {!isModalOpen && (
             <S.BtnWrapper>
               <S.ReplyBtn
                 src="/images/reply.png"
