@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import * as S from './Messenger.style';
 import { RiSendPlane2Fill } from 'react-icons/ri';
 
-import { connect } from 'react-redux';
-import { actionCreators } from '../../store';
+// import { connect } from 'react-redux';
+// import { actionCreators } from '../../store';
 
-import Chat from '../../components/Chat/Chat';
+// import Chat from '../../components/Chat/Chat';
 
 function Messenger({ chatting, addChat }) {
   const [text, setText] = useState('');
@@ -41,9 +41,9 @@ function Messenger({ chatting, addChat }) {
         <S.ChatBox />
         <S.InputBox onSubmit={onSubmit}>
           <S.ChatList>
-            {chatting.map(content => (
+            {/* {chatting.map(content => (
               <Chat {...content} key={content.id} />
-            ))}
+            ))} */}
           </S.ChatList>
           <S.InputContainer>
             <S.InputText
@@ -65,12 +65,14 @@ function Messenger({ chatting, addChat }) {
   );
 }
 
-const mapStateProps = state => {
-  return { chatting: state };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    addChat: text => dispatch(actionCreators.addChat(text)),
-  };
-};
-export default connect(mapStateProps, mapDispatchToProps)(Messenger);
+export default Messenger;
+
+// const mapStateProps = state => {
+//   return { chatting: state };
+// };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addChat: text => dispatch(actionCreators.addChat(text)),
+//   };
+// };
+// export default connect(mapStateProps, mapDispatchToProps)(Messenger);

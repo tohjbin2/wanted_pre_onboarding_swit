@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const Wrapper = styled.div`
@@ -93,5 +93,4 @@ export const EnterBtn = styled.button`
   font-size: 20px;
   font-weight: bold;
   cursor: ${props => (props.isActive ? 'pointer' : 'default')};
-  cursor: ;
 `;
