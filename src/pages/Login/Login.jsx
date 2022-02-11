@@ -10,9 +10,9 @@ const Login = () => {
   const [userData, setUserData] = useState({
     userId: '',
     userName: '',
-    profileImg: '',
+    profileImageSrc: '',
   });
-  const { userId, userName, profileImg } = userData;
+  const { userId, userName, profileImageSrc } = userData;
 
   const handleUserInput = e => {
     const { name, value } = e.target;
@@ -20,18 +20,18 @@ const Login = () => {
   };
 
   const pickProfileImg = item => {
-    setUserData({ ...userData, profileImg: item });
+    setUserData({ ...userData, profileImageSrc: item });
   };
 
   const submitValid =
-    userId.length > 0 && userName.length > 0 && profileImg.length > 0;
+    userId.length > 0 && userName.length > 0 && profileImageSrc.length > 0;
 
   const submitUserData = () => {
     dispatch({
       type: 'USER_LOGIN',
       userId: userId,
       userName: userName,
-      profileImg: profileImg,
+      profileImageSrc: profileImageSrc,
     });
     submitValid ? alert('환영합니다.') : alert('가입 형식을 확인하세요');
     navigate('/messenger');
