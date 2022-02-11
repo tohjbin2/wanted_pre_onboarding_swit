@@ -38,6 +38,7 @@
 // export default store;
 
 import { createStore } from 'redux';
+import { INITIAL_MESSAGE } from './constants';
 
 const reducer = (state = {}, action) => {
   if (action.type === 'USER_LOGIN') {
