@@ -114,6 +114,7 @@ export const InputText = styled.textarea`
   border-bottom-left-radius: 5px;
   background-color: white;
   font-size: 16px;
+  line-height: 25px;
   resize: none;
   &::-webkit-scrollbar {
     display: none;
