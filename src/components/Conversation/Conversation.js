@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as S from './Conversation.style';
 
@@ -40,11 +40,13 @@ function Conversation({ contentId, message, handleTempMessage }) {
               title="답장하기"
               onClick={handleReplyBtn}
             />
-            <S.DeleteBtn
-              src="/images/delete.png"
-              title="삭제하기"
-              onClick={handleDeleteBtn}
-            />
+            {message.userId === currentUserId && (
+              <S.DeleteBtn
+                src="/images/delete.png"
+                title="삭제하기"
+                onClick={handleDeleteBtn}
+              />
+            )}
           </S.BtnWrapper>
         </S.MsgWrapper>
       </S.InfoAndMsgContainer>
