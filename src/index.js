@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import Router from './Router';
-import { store } from './store';
+import store from './redux/store';
 import { Provider } from 'react-redux';
-import modalReducer from './modalStore';
 
 ReactDOM.render(
   <Provider store={store}>

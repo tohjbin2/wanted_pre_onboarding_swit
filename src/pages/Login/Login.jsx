@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './Login.style';
-import { PROFILE_IMAGE } from '../../constants';
 import { useDispatch } from 'react-redux';
+
+import { PROFILE_IMAGE } from '../../constants';
+import * as S from './Login.style';
 
 const Login = () => {
   const navigate = useNavigate();

@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import * as S from './Messenger.style';
-import { RiSendPlane2Fill } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
-import { formatingTime } from '../../utils';
+import { RiSendPlane2Fill } from 'react-icons/ri';
+
 import Conversation from '../../components/Conversation/Conversation';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
+import { formatingTime } from '../../utils';
+import * as S from './Messenger.style';
 
 function Messenger() {
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.userInfo.userId);
-  const userName = useSelector(state => state.userInfo.userName);
-  const profileImageSrc = useSelector(state => state.userInfo.profileImageSrc);
-  const chatList = useSelector(state => state.chatList);
-  const isModalOpen = useSelector(state => state.modalOpen);
-  const date = formatingTime();
 
-  // console.log(userId);
-  // console.log(userName);
-  // console.log(profileImageSrc);
+  const userId = useSelector(state => state.login.userId);
+  const userName = useSelector(state => state.login.userName);
+  const profileImageSrc = useSelector(state => state.login.profileImageSrc);
+  const chatList = useSelector(state => state.messenger);
+  const isModalOpen = useSelector(state => state.modals.showModal);
+
+  const date = formatingTime();
 
   const [text, setText] = useState('');
 
