@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './DeleteModal.style';
 import Conversation from '../Conversation/Conversation';
+import { actionCreators } from '../../modalStore';
 
 function DeleteModal() {
   // FIXME
