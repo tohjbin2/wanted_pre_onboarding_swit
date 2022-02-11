@@ -9,7 +9,7 @@
 
 ## 🚀 배포 주소
 
-[🔗 데모 링크](https://pre-onboarding-ateamventures.herokuapp.com/)
+[🔗 데모 링크](https://pre-onboarding-swit.herokuapp.com/)
 
 ## 🖥 구현 영상
 
