@@ -4,6 +4,7 @@ import { RiSendPlane2Fill } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
 import { formatingTime } from '../../utils';
 import Conversation from '../../components/Conversation/Conversation';
+import DeleteModal from '../../components/DeleteModal/DeleteModal';
 
 function Messenger() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function Messenger() {
   const userName = useSelector(state => state.userInfo.userName);
   const profileImageSrc = useSelector(state => state.userInfo.profileImageSrc);
   const chatList = useSelector(state => state.chatList);
+  const isModalOpen = useSelector(state => state.modalOpen);
   const date = formatingTime();
 
   // console.log(userId);
@@ -52,6 +54,7 @@ function Messenger() {
 
   return (
     <S.MessengerSection>
+      {isModalOpen && <DeleteModal />}
       <S.ChatSection>
         <S.ChatInfoBar>
           <S.TitleBox>

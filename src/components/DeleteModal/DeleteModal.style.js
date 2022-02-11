@@ -29,6 +29,7 @@ export const CloseBtn = styled.img`
   right: 20px;
   width: 15px;
   height: 15px;
+  cursor: pointer;
 `;
 
 export const Title = styled.h1`
