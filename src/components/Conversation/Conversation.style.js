@@ -4,6 +4,7 @@ export const ConversationContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
   padding: ${({ onModal }) => (!onModal ? '0 10px' : '10px')};
   margin: 5px 0;
   background-color: ${({ onModal }) => onModal && '#f8f8f8'};
@@ -35,7 +36,8 @@ export const InfoWrapper = styled.div`
 
 export const MsgWrapper = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const MsgContent = styled.p`
@@ -78,4 +80,8 @@ export const DeleteBtn = styled.img`
   width: 12px;
   height: 12px;
   cursor: pointer;
+`;
+
+export const MyBadge = styled.span`
+  margin-left: 5px;
 `;
