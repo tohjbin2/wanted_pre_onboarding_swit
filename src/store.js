@@ -37,18 +37,33 @@
 
 // export default store;
 
+// {
+//   '대화목록' : [{}, {}, {}, {}, {}],
+//   '유저정보' : {}
+// }
+
 import { createStore } from 'redux';
 
 const reducer = (state = {}, action) => {
-  if (action.type === 'USER_LOGIN') {
-    return {
-      ...state,
-      userId: action.userId,
-      userName: action.userName,
-      profileImg: action.profileImg,
-    };
+  switch (action.type) {
+    case 'USER_LOGIN':
+      return {
+        ...state,
+        userId: action.userId,
+        userName: action.userName,
+        profileImg: action.profileImg,
+      };
+    case 'ADD_CHAT':
+      return {
+        ...state,
+        userId: action.userId,
+        userName: action.userName,
+        profileImg: action.profileImg,
+        text: action.text,
+      };
+    default:
+      return state;
   }
-  return state;
 };
 
 export const store = createStore(reducer);

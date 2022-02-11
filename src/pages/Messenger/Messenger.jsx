@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './Messenger.style';
 import { RiSendPlane2Fill } from 'react-icons/ri';
+import { useSelector, useDispatch } from 'react-redux';
 
 // import { connect } from 'react-redux';
 // import { actionCreators } from '../../store';
@@ -8,13 +9,25 @@ import { RiSendPlane2Fill } from 'react-icons/ri';
 // import Chat from '../../components/Chat/Chat';
 
 function Messenger({ chatting, addChat }) {
+  const dispatch = useDispatch();
+  const userId = useSelector(state => state.userId);
+  const userName = useSelector(state => state.userName);
+  const profileImg = useSelector(state => state.profileImg);
+
   const [text, setText] = useState('');
 
   const onChange = e => {
     setText(e.target.value);
   };
+
   const onSubmit = e => {
-    addChat(text);
+    dispatch({
+      type: 'ADD_CHAT',
+      userId: userId,
+      userName: userName,
+      profileImg: profileImg,
+      text: text,
+    });
     e.preventDefault();
     setText('');
   };
