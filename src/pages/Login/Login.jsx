@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PROFILE_IMAGE } from '../../constants';
 import * as S from './Login.style';
@@ -9,6 +10,8 @@ const Login = () => {
     userName: '',
     profileImg: '',
   });
+
+  const navigate = useNavigate();
 
   const { userId, userName, profileImg } = userData;
 
@@ -25,7 +28,8 @@ const Login = () => {
     userId.length > 0 && userName.length > 0 && profileImg.length > 0;
 
   const submitUserData = () => {
-    submitValid ? alert('가입완료') : alert('가입 형식을 확인하세요');
+    submitValid ? alert('환영합니다.') : alert('가입 형식을 확인하세요');
+    navigate('/messenger');
   };
 
   return (
@@ -47,7 +51,7 @@ const Login = () => {
             <S.Input
               type="text"
               name="userName"
-              placeholder="NAME"
+              placeholder="표시될 이름을 적어주세요."
               onChange={handleUserInput}
             />
           </S.InputItem>
@@ -65,7 +69,6 @@ const Login = () => {
             );
           })}
         </S.ProfileWrap>
-
         <S.EnterBtn
           isActive={submitValid}
           disabled={!submitValid}
