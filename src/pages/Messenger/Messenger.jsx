@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { RiSendPlane2Fill } from 'react-icons/ri';
 
 import Conversation from '../../components/Conversation/Conversation';
@@ -9,6 +10,7 @@ import * as S from './Messenger.style';
 
 function Messenger() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userId = useSelector(state => state.login.userId);
   const userName = useSelector(state => state.login.userName);
@@ -30,16 +32,21 @@ function Messenger() {
   };
 
   const onSubmit = e => {
-    dispatch({
-      type: 'ADD_CHAT',
-      userId: userId,
-      userName: userName,
-      profileImageSrc: profileImageSrc,
-      message: text,
-      sendDate: date,
-    });
-    // e.preventDefault();
-    setText('');
+    if (userId !== undefined) {
+      dispatch({
+        type: 'ADD_CHAT',
+        userId: userId,
+        userName: userName,
+        profileImageSrc: profileImageSrc,
+        message: text,
+        sendDate: date,
+      });
+      // e.preventDefault();
+      setText('');
+    } else {
+      alert('로그인이 필요합니다');
+      navigate('/');
+    }
   };
 
   const pressEnter = e => {
@@ -49,12 +56,10 @@ function Messenger() {
   };
 
   const handleSendBtn = () => {
-    if (!text || !text.trim()) {
-      return alert('메시지를 입력하세요');
-    } else {
-      onSubmit();
-    }
+    !text ? alert('메시지를 입력하세요') : onSubmit();
   };
+
+  console.log(!text);
 
   return (
     <S.MessengerSection>
