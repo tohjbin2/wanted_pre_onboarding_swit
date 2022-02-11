@@ -16,6 +16,7 @@ function Conversation({ contentId, message, handleTempMessage }) {
       type: 'REPLY',
       id: message.userId,
       content: message.message,
+      userName: message.userName,
     });
   };
 

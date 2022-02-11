@@ -104,15 +104,17 @@ export const InputContainer = styled.div`
 
 export const InputText = styled.textarea`
   width: 85%;
-  padding: 14px 10px 0 10px;
+  height: 60px;
+  padding: 5px;
   border: solid 1px #dbdbdb;
   border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background-color: white;
-  font-size: 16px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 15px;
   resize: none;
+  white-space: pre-wrap;
   &::-webkit-scrollbar {
     display: none;
   }

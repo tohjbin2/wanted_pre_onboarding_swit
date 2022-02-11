@@ -46,6 +46,7 @@ export const MsgContent = styled.p`
   font-size: 14px;
   line-height: 24px;
   margin-right: 10px;
+  white-space: pre-wrap;
 `;
 
 export const UserName = styled.h2`
