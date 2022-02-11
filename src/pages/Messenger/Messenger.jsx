@@ -1,33 +1,38 @@
 import React, { useState } from 'react';
 import * as S from './Messenger.style';
 import { RiSendPlane2Fill } from 'react-icons/ri';
-
-// import { connect } from 'react-redux';
-// import { actionCreators } from '../../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { formatingTime } from '../../utils';
 import Conversation from '../../components/Conversation/Conversation';
-import { INITIAL_MESSAGE } from '../../constants';
 
-const Messenger = ({ chatting, addChat }) => {
+function Messenger() {
+  const dispatch = useDispatch();
+  const userId = useSelector(state => state.userInfo.userId);
+  const userName = useSelector(state => state.userInfo.userName);
+  const profileImageSrc = useSelector(state => state.userInfo.profileImageSrc);
+  const chatList = useSelector(state => state.chatList);
+  const date = formatingTime();
+
+  // console.log(userId);
+  // console.log(userName);
+  // console.log(profileImageSrc);
+
   const [text, setText] = useState('');
-  const [messages, setMessages] = useState(INITIAL_MESSAGE);
 
   const onChange = e => {
     setText(e.target.value);
   };
 
   const onSubmit = e => {
-    setMessages([
-      ...messages,
-      {
-        id: 1,
-        userName: '프론트엔드',
-        userId: 'frontend123',
-        profileImageSrc: '/images/profile-icon-1.jpg',
-        sendDate: '2022-01-01 01:00:00',
-        message: text,
-      },
-    ]);
-    e.preventDefault();
+    dispatch({
+      type: 'ADD_CHAT',
+      userId: userId,
+      userName: userName,
+      profileImageSrc: profileImageSrc,
+      message: text,
+      sendDate: date,
+    });
+    // e.preventDefault();
     setText('');
   };
 
@@ -38,7 +43,11 @@ const Messenger = ({ chatting, addChat }) => {
   };
 
   const handleSendBtn = () => {
-    if (!text || !text.trim()) return alert('메시지를 입력하세요');
+    if (!text || !text.trim()) {
+      return alert('메시지를 입력하세요');
+    } else {
+      onSubmit();
+    }
   };
 
   return (
@@ -53,14 +62,14 @@ const Messenger = ({ chatting, addChat }) => {
         <S.ChatBox />
         <S.InputBox onSubmit={onSubmit}>
           <S.ChatList>
-            {messages.map(content => {
-              return <Conversation message={content} />;
+            {chatList.map((content, idx) => {
+              return <Conversation key={idx} message={content} />;
             })}
           </S.ChatList>
           <S.InputContainer>
             <S.InputText
               name="inputText"
-              type="text"
+              type="textarea"
               placeholder="Enter message"
               required="required"
               value={text}
@@ -75,17 +84,6 @@ const Messenger = ({ chatting, addChat }) => {
       </S.ChatSection>
     </S.MessengerSection>
   );
-};
+}
 
-// const mapStateProps = state => {
-//   return { chatting: state };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addChat: text => dispatch(actionCreators.addChat(text)),
-//   };
-// };
-
-// export default connect(mapStateProps, mapDispatchToProps)(Messenger);
 export default Messenger;

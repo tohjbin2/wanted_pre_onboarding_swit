@@ -40,16 +40,39 @@
 import { createStore } from 'redux';
 import { INITIAL_MESSAGE } from './constants';
 
-const reducer = (state = {}, action) => {
-  if (action.type === 'USER_LOGIN') {
-    return {
-      ...state,
-      userId: action.userId,
-      userName: action.userName,
-      profileImg: action.profileImg,
-    };
+const initialState = {
+  chatList: [...INITIAL_MESSAGE],
+  userInfo: {},
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'USER_LOGIN':
+      return {
+        ...state,
+        userInfo: {
+          userId: action.userId,
+          userName: action.userName,
+          profileImageSrc: action.profileImageSrc,
+        },
+      };
+    case 'ADD_CHAT':
+      return {
+        ...state,
+        chatList: [
+          ...state.chatList,
+          {
+            userId: action.userId,
+            userName: action.userName,
+            profileImageSrc: action.profileImageSrc,
+            message: action.message,
+            sendDate: action.sendDate,
+          },
+        ],
+      };
+    default:
+      return state;
   }
-  return state;
 };
 
 export const store = createStore(reducer);
