@@ -47,7 +47,7 @@ export const ChatSection = styled.div`
   flex-direction: column;
   width: 400px;
   height: 800px;
-  margin-top: 100px;
+  margin-top: 40px;
 `;
 
 export const ChatInfoBar = styled.div`
@@ -114,6 +114,7 @@ export const InputText = styled.textarea`
   border-bottom-left-radius: 5px;
   background-color: white;
   font-size: 16px;
+  line-height: 25px;
   resize: none;
   &::-webkit-scrollbar {
     display: none;
