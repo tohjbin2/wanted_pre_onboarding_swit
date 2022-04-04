@@ -9,10 +9,10 @@ import { formatingTime } from '../../utils';
 import * as S from './Messenger.style';
 
 const Messenger = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // MEMO: redux관련
+  const navigate = useNavigate(); // MEMO: useNavigate관련
   const date = formatingTime();
-  const scrollRef = useRef();
+  const scrollRef = useRef(); // MEMO: useRef관련
 
   const userId = useSelector(state => state.login.userId);
   const userName = useSelector(state => state.login.userName);
@@ -55,20 +55,24 @@ const Messenger = () => {
       return handleSendBtn();
     }
   };
+  // MEMO: 키 이벤트를 걸어 메시지 입력창에서 엔터키를 누르면 -> handleSendBtn()이 반환된다(=메시지가 전송된다).
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   };
+  // MEMO: useRef를 이용해 채팅창에 입력하는 순간 마우스 스크롤이 가장 아래로 내려가도록(가장 최신 상태의 메시지가 있는 위치) 만들었다.
 
   const handleSendBtn = () => {
     !content || !content.trim() ? alert('메시지를 입력하세요') : onSubmit();
   };
+  // MEMO: content가 없거나(=아무 입력을 하지 않은 상태) ||(='or') 공백만 있는 경우( trim을 이용해 글자 없이 띄어쓰기만 써서 공백만 있는 상태를 인지하게끔 만듦)가 -> true라면 경고창 반환, false라면 onSubmit()실행
 
   useEffect(() => {
     scrollToBottom();
   }, [chatList]);
+  // MEMO: useEffect의 실행 조건을 chatList가 실행될 때(=채팅창의 input값을 의미함)로 만들었다. 이렇게 조건을 건 이유는 useRef를 실행시키기 위해서
 
   return (
     <S.MessengerSection>
